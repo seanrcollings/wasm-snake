@@ -1,3 +1,8 @@
+# WASM Snake
+
+A version of the game snake playable in your browser written in Rust and compiled to WASM. Check it running (here)[https://seanrcollings.github.io/wasm-snake/]
+
+
 <div align="center">
 
   <h1><code>wasm-pack-template</code></h1>
