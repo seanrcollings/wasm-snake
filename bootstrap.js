@@ -52,32 +52,32 @@
 /******/ 	function promiseResolve() { return Promise.resolve(); }
 /******/
 /******/ 	var wasmImportObjects = {
-/******/ 		"./node_modules/wasm-snake/wasm_snake_bg.wasm": function() {
+/******/ 		"../pkg/wasm_snake_bg.wasm": function() {
 /******/ 			return {
 /******/ 				"./wasm_snake_bg.js": {
 /******/ 					"__wbindgen_string_new": function(p0i32,p1i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbindgen_string_new"](p0i32,p1i32);
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbindgen_string_new"](p0i32,p1i32);
 /******/ 					},
 /******/ 					"__wbindgen_object_drop_ref": function(p0i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbindgen_object_drop_ref"](p0i32);
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbindgen_object_drop_ref"](p0i32);
 /******/ 					},
-/******/ 					"__wbg_new_693216e109162396": function() {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbg_new_693216e109162396"]();
+/******/ 					"__wbg_new_abda76e883ba8a5f": function() {
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbg_new_abda76e883ba8a5f"]();
 /******/ 					},
-/******/ 					"__wbg_stack_0ddaca5d1abfb52f": function(p0i32,p1i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbg_stack_0ddaca5d1abfb52f"](p0i32,p1i32);
+/******/ 					"__wbg_stack_658279fe44541cf6": function(p0i32,p1i32) {
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbg_stack_658279fe44541cf6"](p0i32,p1i32);
 /******/ 					},
-/******/ 					"__wbg_error_09919627ac0992f5": function(p0i32,p1i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbg_error_09919627ac0992f5"](p0i32,p1i32);
+/******/ 					"__wbg_error_f851667af71bcfc6": function(p0i32,p1i32) {
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbg_error_f851667af71bcfc6"](p0i32,p1i32);
 /******/ 					},
-/******/ 					"__wbg_log_e8ba7b992c7ad0eb": function(p0i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbg_log_e8ba7b992c7ad0eb"](p0i32);
+/******/ 					"__wbg_log_1d3ae0273d8f4f8a": function(p0i32) {
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbg_log_1d3ae0273d8f4f8a"](p0i32);
 /******/ 					},
-/******/ 					"__wbg_random_f1dabdd9f148bad5": function() {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbg_random_f1dabdd9f148bad5"]();
+/******/ 					"__wbg_random_5f61cd0d6777a993": function() {
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbg_random_5f61cd0d6777a993"]();
 /******/ 					},
 /******/ 					"__wbindgen_throw": function(p0i32,p1i32) {
-/******/ 						return installedModules["./node_modules/wasm-snake/wasm_snake_bg.js"].exports["__wbindgen_throw"](p0i32,p1i32);
+/******/ 						return installedModules["../pkg/wasm_snake_bg.js"].exports["__wbindgen_throw"](p0i32,p1i32);
 /******/ 					}
 /******/ 				}
 /******/ 			};
@@ -170,7 +170,7 @@
 /******/
 /******/ 		// Fetch + compile chunk loading for webassembly
 /******/
-/******/ 		var wasmModules = {"0":["./node_modules/wasm-snake/wasm_snake_bg.wasm"]}[chunkId] || [];
+/******/ 		var wasmModules = {"0":["../pkg/wasm_snake_bg.wasm"]}[chunkId] || [];
 /******/
 /******/ 		wasmModules.forEach(function(wasmModuleId) {
 /******/ 			var installedWasmModuleData = installedWasmModules[wasmModuleId];
@@ -180,7 +180,7 @@
 /******/ 				promises.push(installedWasmModuleData);
 /******/ 			else {
 /******/ 				var importObject = wasmImportObjects[wasmModuleId]();
-/******/ 				var req = fetch(__webpack_require__.p + "" + {"./node_modules/wasm-snake/wasm_snake_bg.wasm":"c7f207b34abe4e2d4203"}[wasmModuleId] + ".module.wasm");
+/******/ 				var req = fetch(__webpack_require__.p + "" + {"../pkg/wasm_snake_bg.wasm":"705ccb3ef634e64cadda"}[wasmModuleId] + ".module.wasm");
 /******/ 				var promise;
 /******/ 				if(importObject instanceof Promise && typeof WebAssembly.compileStreaming === 'function') {
 /******/ 					promise = Promise.all([WebAssembly.compileStreaming(req), importObject]).then(function(items) {
@@ -281,7 +281,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// A dependency graph that contains any wasm must all be imported\n// asynchronously. This `bootstrap.js` file does the single async import, so\n// that no one else needs to worry about it again.\nPromise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./index.js */ \"./index.js\"))\n  .catch(e => console.error(\"Error importing `index.js`:\", e));\n\n\n//# sourceURL=webpack:///./bootstrap.js?");
+eval("// A dependency graph that contains any wasm must all be imported\n// asynchronously. This `bootstrap.js` file does the single async import, so\n// that no one else needs to worry about it again.\n__webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./index.js */ \"./index.js\"))\n  .catch(e => console.error(\"Error importing `index.js`:\", e));\n\n\n//# sourceURL=webpack:///./bootstrap.js?");
 
 /***/ })
 

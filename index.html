@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello wasm-pack!</title>
+  <title>Snake WASM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
   <style>
     body {
       overflow: hidden;
@@ -16,7 +20,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Montserrat', Courier, monospace;
+      background-color: #1E293B;
+      color: white;
     }
 
     #results-screen {
@@ -33,14 +39,31 @@
       justify-content: center;
       flex-direction: column;
       color: white;
+      border-radius: 6px;
       opacity: 0;
     }
+
+    #restart {
+      background-color: #444;
+      border: 1px solid #444;
+      color: white;
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      font-family: 'Montserrat', Courier, monospace;
+      border-radius: 5px;
+    }
+
+    #restart:hover {
+      background-color: #555;
+      border: 1px solid powderblue;
+    }
+
   </style>
 </head>
 
 <body>
   <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
-  <div id="fps"></div>
   <h2>
     SCORE:
     <span class="score"></span>
