@@ -42,6 +42,14 @@ pub enum Direction {
     Right = 3,
 }
 
+#[wasm_bindgen]
+#[repr(u8)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ControlState {
+    Player = 0,
+    Computer = 1,
+}
+
 struct Snake {
     body: VecDeque<Coord>,
     dir: Direction,
