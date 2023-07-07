@@ -50,7 +50,7 @@ pub enum ControlState {
     Computer = 1,
 }
 
-struct Snake {
+pub struct Snake {
     body: VecDeque<Coord>,
     dir: Direction,
 }
@@ -150,6 +150,20 @@ impl Universe {
         un
     }
 
+    pub fn snake_head(&mut self) -> usize {
+        let (row, col) = self.snake.head();
+        return self.get_index(row, col);
+    }
+
+    pub fn apple(&self) -> usize {
+        for (i, cell) in self.cells.iter().enumerate() {
+            if *cell == Cell::Apple {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     pub fn width(&self) -> u32 {
         self.width
     }
@@ -182,7 +196,7 @@ impl Universe {
         self.toggle_cell(0, 1);
         self.place_random_apple();
         self.score = 0;
-        self.snake = Snake::new((0, 1), (0, 0)); // Does this clean up the old snake?
+        self.snake = Snake::new((0, 1), (0, 0));
     }
 
     pub fn set_direction(&mut self, dir: Direction) {

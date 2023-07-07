@@ -1,6 +1,8 @@
 import { Universe, Cell, Direction } from "wasm-snake";
 import { memory } from "wasm-snake/wasm_snake_bg";
 
+import { KeyboardController, SimpleAIController } from "./controllers";
+
 const CELL_SIZE = 20; // px
 const GRID_COLOR = "grey";
 const cellColors = {
@@ -13,6 +15,7 @@ class SnakeGame {
   constructor(canvas) {
     this.universe = Universe.new(32, 32);
     this.canvas = canvas;
+    this.controller = new SimpleAIController(this);
     this.results = document.getElementById("results-screen");
     this.scoreNodes = document.getElementsByClassName("score");
   }
@@ -29,7 +32,15 @@ class SnakeGame {
     return row * this.width + column;
   }
 
+  getCoords(index) {
+    const row = Math.floor(index / this.width);
+    const column = index % this.width;
+
+    return [row, column];
+  }
+
   run() {
+    this.controller.onStart();
     this.canvas.height = (CELL_SIZE + 1) * this.height + 1;
     this.canvas.width = (CELL_SIZE + 1) * this.width + 1;
     /** @type {CanvasRenderingContext2D} */
@@ -40,26 +51,33 @@ class SnakeGame {
   }
 
   setupListeners() {
-    const keys = {
-      ArrowUp: Direction.Up,
-      ArrowDown: Direction.Down,
-      ArrowLeft: Direction.Left,
-      ArrowRight: Direction.Right,
-    };
+    document.body.addEventListener("keydown", (e) => {
+      if (e.key === " ") {
+        if (this.controller instanceof KeyboardController) {
+          this.controller = new SimpleAIController(this);
+        } else {
+          this.controller = new KeyboardController(this);
+        }
+        this.controller.onStart();
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key in keys) {
-        this.universe.set_direction(keys[e.key]);
+        document.getElementById("player").innerHTML =
+          this.controller.toString();
       }
     });
 
     const restart = document.getElementById("restart");
 
     restart.addEventListener("click", () => {
+      restart.blur();
       this.results.style.opacity = "0";
-      this.universe.restart();
-      this.renderLoop();
+      this.restart();
     });
+  }
+
+  restart() {
+    this.universe.restart();
+    this.controller.currentDirection = Direction.Right;
+    this.renderLoop();
   }
 
   drawGrid() {
@@ -117,6 +135,8 @@ class SnakeGame {
 
   renderLoop() {
     const alive = this.universe.tick();
+    const direction = this.controller.poll();
+    this.universe.set_direction(direction);
 
     for (let i = 0; i < this.scoreNodes.length; i++) {
       this.scoreNodes[i].innerHTML = this.universe.score();
